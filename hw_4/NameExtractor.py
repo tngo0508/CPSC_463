@@ -1,54 +1,56 @@
-import unittest
+##import unittest
 import re
 
 
 class NameExtractor():
     def __init__(self):
-        self._m_full_name = ''
-        self._m_title = ''
-        self._m_first_name = ''
-        self._m_middle_name = ''
-        self._m_last_name = ''
-        self._m_suffix = ''
-        self._m_words = ['']
-        self._m_num_words = 0
+        self.__m_full_name = ''
+        self.__m_title = ''
+        self.__m_first_name = ''
+        self.__m_middle_name = ''
+        self.__m_last_name = ''
+        self.__m_suffix = ''
+        self.__m_words = [None]*5
+        self.__m_num_words = 0
 
     @property
     def full_name(self):
-        return self._m_full_name
+        return self.__m_full_name
 
     @full_name.setter
     def full_name(self, m_full_name):
-        self._m_full_name = m_full_name
+        self.__m_full_name = m_full_name
+
+    def __set_full_name(self, m_full_name):
+        self.full_name = m_full_name
 
     def title(self):
-        return self._m_title
+        return self.__m_title
 
     def first_name(self):
-        return self._m_first_name
+        return self.__m_first_name
 
     def middle_name(self):
-        return self._m_middle_name
+        return self.__m_middle_name
 
     def last_name(self):
-        return self._m_last_name
+        return self.__m_last_name
 
     def suffix(self):
-        return self._m_suffix
+        return self.__m_suffix
 
-    @staticmethod
     def _extract_words(self, value):
         words = re.findall(r'[^\s,.:\t]+', value)
-        if len(words) < 5:
-            self._m_num_words = len(words)
-            self._m_words = words
+        if len(words) <= 5:
+            self.__m_num_words = len(words)
+            self.__m_words[:len(words)] = words
         else:
-            self._m_num_words = 5
-            self._m_words = words[:5]
+            self.__m_num_words = 5
+            self.__m_words = words[:5]
 
     def _parse_name(self):
-        if self._m_full_name is not None and self._m_full_name is not ' ':
-            self._extract_words(self._m_full_name)
+        if self.__m_full_name is not None and self.__m_full_name is not ' ':
+            self._extract_words(self.full_name)
             self._find_title()
             self._find_suffix()
             self._find_last_name()
@@ -59,9 +61,9 @@ class NameExtractor():
         title_list = ['Mr.','Mr','Ms.','Ms','Miss.','Miss','Dr.','Dr','Mrs.',
                       'Mrs','Fr.','Capt.','Lt.','Gen.','President','Sister',
                       'Father','Brother','Major']
-        if not self._m_words:
-            if self._m_words[0] in title_list:
-                self._m_title = self._m_words[0]
+        if self.__m_words is not None:
+            if self.__m_words[0] in title_list:
+                self.__m_title = self.__m_words[0]
                 return 0
             return -1
         return -1
@@ -69,15 +71,17 @@ class NameExtractor():
     def _find_suffix(self):
         suffix_list = ['DDS','CFA','CEO','CFO','Esq','CPA','MBA','PhD','MD',
                        'DC','Sr','Jr','II','III','IV']
-        if self._m_words[4] is not None:
-            self._m_suffix = self._m_words[4]
+        if self.__m_words[4] is not None:
+            self.__m_suffix = self.__m_words[4]
             return 0
         else:
-            if self._m_words[2] is not None and self._m_words[2] in suffix_list:
-                self._m_suffix = self._m_words[2]
+            if self.__m_words[2] is not None and self.__m_words[2] in \
+                    suffix_list:
+                self.__m_suffix = self.__m_words[2]
                 return 0
-            if self._m_words[3] is not None and self._m_words[3] in suffix_list:
-                self._m_suffix = self._m_words[3]
+            if self.__m_words[3] is not None and self.__m_words[3] in \
+                    suffix_list:
+                self.__m_suffix = self.__m_words[3]
                 return 0
         return -1
 
@@ -99,5 +103,14 @@ class ENameExtractorError():
         pass
 
 
+def main():
+    name = NameExtractor()
+    name.full_name = 'John Brown'
+    print name.full_name
+    name._parse_name()
+    print name.full_name
+
+
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    main()

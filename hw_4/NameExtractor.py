@@ -24,7 +24,7 @@ class NameExtractor(object):
         self.__m_full_name = m_full_name
 
     def title(self):
-        return
+        return self.__m_title
 
     def first_name(self):
         return self.__m_first_name

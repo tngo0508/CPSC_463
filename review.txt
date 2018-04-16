@@ -1,0 +1,55 @@
+know the fundamental concepts of v-model
+reason why choose the points in mechanism of boundary value testing
+4 different types of boundary test. need to remember the concepts what they are
+pay attention to the names
+theory behind equivalence class testing, reason behind the selections, what is
+the miminum requirement?
+decision table base testing, what is the size of table?
+code base testing
+study slide 18 in code based pdf
+cover all edges of decision graph -> test all branches because each branches are
+dangerous place where bugs can exist
+cover all statements vs branch -> branch is better? because if you have 100 %
+branch coverage, it automatically guarantees 100% statement coverage. not vice
+versa.
+accomplish 100% testing is not realistic because it costs much money. Also,
+designing test cases can be very difficult to do
+
+chapter 3
+4 different boundary testings, need to recognize those 4, understand them, the
+difference between them
+  first group follows single fault riability theory
+  second group does not follows the theory
+  each group has subgroups: one inside boundary, one outside boundary
+  explain why you pick a particular pattern
+  able to explain the theory behind
+
+
+chapter 4
+to increase the confidence-> need to test each division
+at least one test case for each division
+in x, y example: 12 partitions
+2 opposite forces: money-driven means try to achieve testing as cheap as
+possible; the other wants to achieve higher quality, means want to have more
+tests 
+the idea: if you believe in single fault reliabilty theory, you may think each
+partition only needs one test case
+if you don't believe or you have more money, assume multi-fault reliability
+or you can increase more confidence by testing outside the boundary
+
+chapter 5
+come up with table
+some rules become redandunt
+know how to reduce the tables
+
+chapter 6
+statement coverage
+branch coverage
+trace path, control flow
+100% branch coverage: cover all edges of decision graph
+
+why 100% path is not equivalent to 100% branch coverage?
+10 decision program i.e. 10 if-else statements
+two-way decision i.e. switch statement
+control = statement execution
+data flow = manipulate data, tracing a variable

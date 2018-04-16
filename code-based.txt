@@ -1,0 +1,24 @@
+data flow testing part 1
+define = the time when you input value for the variable
+ex: input(price) (node 5)
+define is different from declare in node 2(var totalPrice, price)
+
+Node 6 shows a "use" of the variable price
+pay attention at Define of a variable and use of a variable
+purpose: keep track of variable to travel all DU pair so order to make sure
+nothing is wrong. Help to design test cases that variable is defined and used as
+expected
+A DU pair reveals the beginning and ending of the data flow associated with a
+given table
+
+data flow testing part 3
+slice-based testing: cut the program into smaller pieces but each piece has to
+be executable
+pay attention to interesting data, ignore the irrelevant data (data portion)
+pay attention to control flow
+CONTROL DEPENDENCE GRAPH
+component of program = instruction of program
+component that is not nested within a loop or conditional
+don't want to take out the nodes that effect control of program
+
+FLOW DEPENDENCE GRAPH
